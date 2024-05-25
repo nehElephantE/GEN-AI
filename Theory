@@ -1,0 +1,44 @@
+-> Artificial Neural Network (ANN) has got an input going into hidden layers and then output. The hidden layers are basically hyoerparameters
+-> Convolution Neural Networks (CNN) mostly for videos or images. First we do 'feature extraction' using necessary filters then pooling
+
+-> Generative Adversarial Network (GAN)- Random Input goes through a neural network called as generator and which gets sampled out. Real input also gets sampled out then these
+2 samples are passed through another NN called discriminator 
+
+######################
+Recurrent Neural Networks (RNNs) are a type of artificial neural network designed to recognize patterns in sequences of data, such as time series, speech, text, 
+financial data, and more. RNNs are particularly powerful because they have an internal memory that can capture information about previous steps in the sequence, 
+making them well-suited for tasks where the order of the data is important.
+
+->  Key Features of RNNs
+Sequential Data Handling: RNNs process sequences of data by maintaining a hidden state that captures information about the previous elements in the sequence.
+
+Hidden State: The hidden state in an RNN is a vector that gets updated at each time step based on the input at that step and the previous hidden state. This allows 
+the network to maintain a form of memory over time.
+
+Weights Sharing: Unlike traditional neural networks, which have different parameters for each layer, RNNs share the same weights across all time steps. This weight 
+sharing makes them more efficient for processing sequences.
+
+-> Types of RNNs
+Vanilla RNN: The basic form of RNN, which can struggle with long-term dependencies due to issues like vanishing and exploding gradients.
+
+Long Short-Term Memory (LSTM): A type of RNN designed to handle long-term dependencies more effectively by using gates (input, output, and forget gates) to control the 
+flow of information and maintain a more stable gradient.
+
+Gated Recurrent Unit (GRU): A simplified version of LSTM that combines the forget and input gates into a single update gate. GRUs are computationally more efficient 
+than LSTMs while still handling long-term dependencies well.
+
+-> Applications of RNNs
+Natural Language Processing (NLP): RNNs are widely used for tasks like language modeling, machine translation, sentiment analysis, and speech recognition.
+
+Time Series Prediction: RNNs can be used to predict future values in a sequence, such as stock prices or weather data.
+
+Image Captioning: Combining convolutional neural networks (CNNs) for image processing and RNNs for sequence generation allows for generating captions for images.
+
+-> Challenges and Solutions
+Vanishing/Exploding Gradient Problem: As gradients are backpropagated through many time steps, they can become very small (vanish) or very large (explode), making 
+training difficult. LSTMs and GRUs are designed to mitigate these issues.
+
+Training Complexity: Training RNNs can be computationally intensive and time-consuming. Techniques like truncated backpropagation through time (BPTT) are used to make 
+training more manageable.
+
+Data Dependencies: RNNs require sequential data and are not as effective on tasks where data points are independent and identically distributed (i.i.d.).
