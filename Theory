@@ -1,4 +1,4 @@
--> Artificial Neural Network (ANN) has got an input going into hidden layers and then output. The hidden layers are basically hyoerparameters
+-> Artificial Neural Network (ANN) has got an input going into hidden layers and then output. The hidden layers are basically hyperparameters
 -> Convolution Neural Networks (CNN) mostly for videos or images. First we do 'feature extraction' using necessary filters then pooling
 
 -> Generative Adversarial Network (GAN)- Random Input goes through a neural network called as generator and which gets sampled out. Real input also gets sampled out then these
@@ -42,3 +42,44 @@ Training Complexity: Training RNNs can be computationally intensive and time-con
 training more manageable.
 
 Data Dependencies: RNNs require sequential data and are not as effective on tasks where data points are independent and identically distributed (i.i.d.).
+
+
+################
+DESCRIPTIVE AND GENERATIVE MODEL
+
+Discriminative and generative models are two broad classes of models used in machine learning and statistics, particularly in 
+the context of supervised learning tasks such as classification or regression.
+
+**Discriminative Models:**
+- **Definition:** Discriminative models learn the decision boundary between classes directly from the data. They focus on learning 
+the conditional probability \( P(y \mid x) \), where \( y \) is the target variable (e.g., class label) and \( x \) is the input
+features.
+- **Characteristics:**
+  - They are typically simpler and more interpretable because they directly model the relationship between inputs and outputs.
+  - Examples include logistic regression, support vector machines (SVMs), and neural networks trained with a softmax output layer
+for classification.
+
+**Generative Models:**
+- **Definition:** Generative models learn the joint probability distribution \( P(x, y) \) of the input features \( x \) and the 
+target variable \( y \). From this joint distribution, they can generate new examples that resemble the training data.
+- **Characteristics:**
+  - They can be used for tasks such as generating new samples, data augmentation, and handling missing data.
+  - Examples include naive Bayes, Gaussian mixture models (GMMs), and various types of neural networks used in generative 
+adversarial networks (GANs) and variational autoencoders (VAEs).
+
+**Key Differences:**
+- **Focus:** Discriminative models focus on the decision boundary between classes (directly predicting \( y \) given \( x \)), 
+while generative models focus on modeling how the data is generated (modeling \( P(x, y) \)).
+- **Applications:** Discriminative models are often used in classification tasks where the goal is to predict the class label of
+new data points. Generative models are used in tasks where understanding the underlying distribution of the data or generating new 
+samples is important.
+- **Complexity:** Generative models tend to be more complex because they model the joint distribution of \( x \) and \( y \),
+whereas discriminative models only model the conditional distribution \( P(y \mid x) \).
+
+
+
+##########################
+TRANSFORMERS
+
+comprises of encoders and decoders 
+few LLMs are using one of the above and some are using both
