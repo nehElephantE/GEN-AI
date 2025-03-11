@@ -1,4 +1,64 @@
--> Artificial Neural Network (ANN) has got an input going into hidden layers and then output. The hidden layers are basically hyperparameters
+###################
+TYPES OF AI (BAsed on capabalities)
+
+1. Narrow AI - also known as Weak AI, refers to artificial intelligence systems that are designed and trained for a specific task or a narrow set of tasks.
+Self-driving cars
+Google search
+Conversational bots
+Email spam filters
+Netflix’s recommendations etc.
+
+2. General AI - also known as Strong AI or artificial general intelligence (AGI), can understand and learn any intellectual task that a human being can.
+Currently, there is no such system exist which can come under general AI and can perform any task as perfect as a human.
+
+3. Super AI - systems where machines have the potential to exceed human intelligence, outperforming humans in tasks and exhibiting cognitive abilities.
+Super AI is still a hypothetical concept of Artificial Intelligence. Development of such systems in real is still world changing task.
+
+
+#####################
+TYPES OF AI (Based on Functionality)
+
+1. Reactive Machines - AI systems that have no memory.These systems operate solely based on the present data, taking into account only the current situation.
+They can perform a narrowed range of pre-defined tasks.
+
+2. Limited Memory - AI can take informed and improved decisions by looking at its past experiences stored in a temporary memory.
+Self-driving cars, Recommendation Engines
+
+3. Theory of Mind - Theory of Mind and Self-aware AI, however, are theoretical types that could be developed in the future
+
+4. Self-Aware AI - Furistic where machines have their own consciousness and become self-aware.
+
+
+#######################
+TYPES OF MACHINE LEARNING 
+
+Machine learning can be broadly categorized into three main types:
+
+Supervised learning - labels - Email Spam Filtering, Image Classification, Facial Recognition
+Unsupervised learning - Clustering Customer Segmentation, Anomaly Detection in Cybersecurity, Recommendation Systems
+Reinforcement learning.
+
+
+#####################
+DEEP LEARNING
+
+-> Artificial Neural Network (ANN) - consists of three layers — Input Layer, Output Layer and Hidden Layers.
+
+
+#####################
+GENERATIVE AI 
+
+The four primary types of generative AI models are:
+
+Large Language Models (LLMs)
+Diffusers
+Image, Audio and Video generation
+Code generation.
+
+
+
+
+
 -> Convolution Neural Networks (CNN) mostly for videos or images. First we do 'feature extraction' using necessary filters then pooling
 
 -> Generative Adversarial Network (GAN)- Random Input goes through a neural network called as generator and which gets sampled out. Real input also gets sampled out then these
