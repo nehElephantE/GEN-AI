@@ -1,5 +1,5 @@
 ###################
-TYPES OF AI (BAsed on capabalities)
+TYPES OF AI (Based on capabalities)
 
 1. Narrow AI - also known as Weak AI, refers to artificial intelligence systems that are designed and trained for a specific task or a narrow set of tasks.
 Self-driving cars
@@ -42,7 +42,28 @@ Reinforcement learning.
 #####################
 DEEP LEARNING
 
--> Artificial Neural Network (ANN) - consists of three layers — Input Layer, Output Layer and Hidden Layers.
+=> 
+Artificial Neural Network (ANN) - consists of three layers — Input Layer, Output Layer and Hidden Layers.
+ANN is a machine learning algorithm used for classification, regression and clustering problems
+The output at each node is called its activation or node value.
+
+During the training phase, the network is exposed to a labeled dataset, where it adjusts its internal parameters,
+known as weights and biases, to minimize the difference between its predictions and the actual outputs. This process, often termed backpropagation,
+involves iteratively updating the network’s parameters using optimization algorithms like gradient descent.
+
+Types
+1. FeedForward ANN - the information flow is unidirectional. A unit sends information to another unit from which it does not receive any information. 
+There are no feedback loops. They are used in pattern generation/recognition/classification. They have fixed inputs and outputs.
+2. FeedBack ANN - feedback loops are allowed. They are used in content-addressable memories.
+
+Activation Function or Transfer Function
+function that you use to get the output of the node.
+Types - linear and non-linear(Derivative or Differential,Monotonic function)
+
+Sigmoid Activation Function - main reason why we use the sigmoid function is that it exists between (0 to 1). 
+Therefore, it is especially used for models where we have to predict the probability as an output.
+ReLU (Rectified Linear Unit) Activation Function - max(0,z)
+Tanh Activation Function
 
 
 #####################
@@ -55,7 +76,92 @@ Diffusers
 Image, Audio and Video generation
 Code generation.
 
+=>
+GAN (GENERATIVE ADVERSIAL NETWORK)
+autonomously learn patterns in the input data to generate new examples resembling the original dataset.
 
+GAN’s architecture consists of two neural networks:
+Generator: creates synthetic data from random noise to produce data so realistic that the discriminator cannot distinguish it from real data.
+Discriminator: acts as a critic, evaluating whether the data it receives is real or fake.
+
+Adversarial training in GANs refers to the process where two neural networks, a generator and a discriminator, are trained together in a competitive setting. 
+The idea is to create a dynamic where the generator tries to create data that is as realistic as possible, while the discriminator tries to differentiate 
+between real and fake data.
+
+The generator creates fake data, starting from random noise. Its goal is to make the fake data as similar to the real data as possible.
+The discriminator's job is to distinguish between real data (from the actual dataset) and fake data (produced by the generator). 
+It outputs a probability, indicating whether the input is real (close to 1) or fake (close to 0).
+
+The "adversarial" nature comes from the fact that the generator and discriminator are in opposition, like a game:
+- The generator aims to fool the discriminator into thinking its generated data is real.
+- The discriminator aims to correctly identify which data is real and which is fake.
+
+The Training Process
+- The generator tries to minimize the discriminator's ability to classify fake data as fake 
+(i.e., it tries to maximize the probability of the discriminator making a mistake).
+- The discriminator tries to correctly classify real and fake data, which leads to a min-max game: the generator minimizes a loss function
+(related to how well it fooled the discriminator), and the discriminator maximizes its ability to distinguish between real and fake data.
+
+Loss Functions
+- Generator Loss: It is often based on how well the generator is able to fool the discriminator. A common loss is the binary cross-entropy between the 
+discriminator’s prediction and the label (real or fake).
+- Discriminator Loss: It is based on how accurately the discriminator can classify real vs. fake data.
+
+Generator Model - deep neural network that takes random noise as input to generate realistic data samples It learns the underlying data distribution by 
+adjusting its parameters through backpropagation.
+Discriminator Model - acts as a binary classifier
+GANs follow a minimax optimization
+
+Types of GANs
+1. Vanilla GAN
+Vanilla GAN is the simplest type of GAN. It consists of:
+A generator and a discriminator, both are built using multi-layer perceptrons (MLPs).
+The model optimizes its mathematical formulation using stochastic gradient descent (SGD).
+While Vanilla GANs serve as the foundation for more advanced GAN models, they often struggle with issues like mode collapse and unstable training.
+
+2. Conditional GAN (CGAN)
+Conditional GANs (CGANs) introduce an additional conditional parameter to guide the generation process. 
+Instead of generating data randomly, CGANs allow the model to produce specific types of outputs.
+Working of CGANs:
+A conditional variable (y) is fed into both the generator and the discriminator.
+This ensures that the generator creates data corresponding to the given condition (e.g., generating images of specific objects).
+The discriminator also receives the labels to help distinguish between real and fake data.
+
+3. Deep Convolutional GAN (DCGAN)
+Deep Convolutional GANs (DCGANs) are among the most popular and widely used types of GANs, particularly for image generation.
+Uses Convolutional Neural Networks (CNNs) instead of simple multi-layer perceptrons (MLPs).
+Max pooling layers are replaced with convolutional stride, making the model more efficient.
+Fully connected layers are removed, allowing for better spatial understanding of images.
+DCGANs have been highly successful in generating high-quality images, making them a go-to choice for deep learning researchers.
+
+4. Laplacian Pyramid GAN (LAPGAN)
+Laplacian Pyramid GAN (LAPGAN) is designed to generate ultra-high-quality images by leveraging a multi-resolution approach.
+Uses multiple generator-discriminator pairs at different levels of the Laplacian pyramid.
+Images are first downsampled at each layer of the pyramid and upscaled again using Conditional GANs (CGANs).
+This process allows the image to gradually refine details, reducing noise and improving clarity.
+Due to its ability to generate highly detailed images, LAPGAN is considered a superior approach for photorealistic image generation.
+
+5. Super Resolution GAN (SRGAN)
+Super-Resolution GAN (SRGAN) is specifically designed to increase the resolution of low-quality images while preserving details.
+Uses a deep neural network combined with an adversarial loss function.
+Enhances low-resolution images by adding finer details, making them appear sharper and more realistic.
+Helps reduce common image upscaling errors, such as blurriness and pixelation.
+
+6. WGAN (Wasserstein GAN): WGANs introduce Wasserstein distance, also known as Earth Mover’s distance, as a new objective function instead of the 
+Jensen-Shannon divergence used in vanilla GANs. This change leads to more stable training and better convergence properties. WGANs also introduce weight 
+clipping or gradient penalty techniques to enforce Lipschitz continuity, further improving stability.
+
+7. CycleGAN: CycleGANs are a type of GAN designed for unpaired image-to-image translation tasks. Unlike CGANs, CycleGANs do not require paired training data;
+instead, they learn to translate images from one domain to another in a cycle-consistent manner. This allows for transformations such as converting images from 
+summer to winter landscapes without requiring corresponding examples.
+
+8. StyleGAN (Style-Generative Adversarial Networks): StyleGANs introduce style-based techniques for controlling the synthesis of high-resolution images.
+They incorporate style modulation techniques to disentangle the latent factors of variation in the generated images, resulting in more realistic and
+diverse outputs. StyleGANs have been instrumental in generating photorealistic images of faces and other complex scenes.
+
+9. BigGAN (Big Generative Adversarial Networks): BigGANs focus on scaling up GAN architectures to generate high-fidelity images with large variations. 
+They employ techniques such as class-conditional normalization and increased model capacity to generate high-resolution images across multiple classes 
+efficiently. BigGANs have demonstrated impressive results in generating diverse and realistic images across various domains.
 
 
 
