@@ -16,6 +16,22 @@ yt​=softmax(Why​ht​+by​) - Output prediction
 NOTE : initially NLP and other sequential tasks were done using RNN (LSTM/GRU) but parallel processing was tough that why transformers came into picture
 
 
+-Attention Mechanism
+way for the model to weight other tokens by relevance when processing a given token.
+For each token 𝑖, the model asks: “Which other tokens 𝑗 matter most to me right now?”
+The answers are numbers (weights) over all tokens; higher weight ⇒ more influence.
+
+
+
+
+
+
+
+
+
+
+
+
 -> Transformer  - processes text in parallel instead of sequentially.
 It takes an entire sentence at once.
 Uses attention to figure out which words matter most to each other.
