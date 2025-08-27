@@ -13,11 +13,96 @@ ht​=tanh(Wxh​xt​+Whh​ht−1​+bh​) - Hidden state update
 yt​=softmax(Why​ht​+by​) - Output prediction
 
 
+NOTE : initially NLP and other sequential tasks were done using RNN (LSTM/GRU) but parallel processing was tough that why transformers came into picture
+
+
+-> Transformer  - processes text in parallel instead of sequentially.
+It takes an entire sentence at once.
+Uses attention to figure out which words matter most to each other.
+Components of Transformer Architecture
+1. Input & Tokenization
+Sentence → Tokens → Converted into vectors (embeddings).
+“Playing football” → [“Play”, “ing”, “football”] → Numeric embeddings.
+
+2. Positional Encoding
+Since Transformers don’t read sequentially, they need extra info about word order.
+Positional encoding adds a unique signal to each token embedding.
+Formula uses sine & cosine functions with different frequencies.
+
+3. Encoder-Decoder Structure
+Encoder → Reads input text & creates hidden representations.
+Decoder → Generates output sequence word by word (used in translation, summarization).
+
+4. Multi-Head Self-Attention
+heart of the Transformer.
+Each token is turned into 3 vectors:
+Query (Q) – "What am I looking for?"
+Key (K) – "What information do I have?"
+Value (V) – "The actual information I can provide."
+The model calculates Attention Scores = Q • K (dot product).
+High score = token is relevant.
+Then weight the Values (V) accordingly.
+
+Sentence: “The bank near the river flooded.”
+Query(word=“bank”) compares with Key(“river”) → strong score → context = river bank.
+
+Multi-head:
+Multiple attention "heads" look at different aspects of relationships (syntax, semantics, long-distance dependencies).
+Then combine their insights.
+
+5. Feed-Forward Neural Network (FFN)
+After attention, each token passes through a small feedforward network (same for all tokens).
+This helps the model learn nonlinear patterns and richer representations.
+
+6. Residual Connections & Layer Normalization
+To prevent vanishing gradients and help training:
+Residual connections (skip connections) → add input back to the output of a layer.
+Layer normalization → keeps values stable.
+
+7. Stacking Layers
+Transformers stack many encoder/decoder layers (12, 24, 96+ depending on size).
+Each layer refines the representation of tokens.
+More layers = more complex reasoning ability.
+
+8. Output Layer
+Finally, a linear + softmax layer predicts the probability of the next token.
+
+
+Variants of Transformers
+Encoder-only → BERT (good for understanding tasks: classification, QA).
+Decoder-only → GPT series (good for text generation, completion).
+Encoder-Decoder → T5, original Transformer (good for translation, summarization).
+
+
+
+
 -> LLM - type of artificial intelligence model trained on huge amounts of text data to understand and generate human-like language.
 Core Components of LLMs
-
-1.Architecture
-LLMs are built on the Transformer architecture (2017).
+1. Architecture
 Transformers introduced two key ideas:
 Attention mechanism → lets the model “focus” on important words in a sentence, even if they’re far apart.
 Self-attention → each word looks at all the others to understand context.
+
+2. Training Data - massive text data
+
+3. Parameters
+knobs” or internal weights that the model learns during training.
+The larger the model, the more parameters it has (e.g., GPT-3 → 175B, GPT-4 → trillions+).
+Parameters store knowledge of grammar, facts, reasoning ability.
+
+4. Tokenizer
+Before feeding text to the model, words are split into tokens (smaller units).
+
+5. Embedding Layer
+Tokens are converted into vectors (numbers).
+These vectors capture meaning — similar words have similar vectors.
+
+6. Attention Mechanism
+The heart of transformers.
+Allows the model to weigh which words are important when predicting the next word.
+
+7. Feedforward Layers
+After attention, information passes through neural layers that transform data and learn higher-level features (like grammar rules, reasoning patterns).
+
+8. Output Layer
+The model outputs probabilities for the next token.
