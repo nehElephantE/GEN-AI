@@ -16,10 +16,68 @@ yt​=softmax(Why​ht​+by​) - Output prediction
 NOTE : initially NLP and other sequential tasks were done using RNN (LSTM/GRU) but parallel processing was tough that why transformers came into picture
 
 
--Attention Mechanism
+-> Vector Embeddings
+way of representing data (like words, images, audio, or even entire documents) as a list of numbers (a vector).
+Embeddings turn “things” into numbers while preserving their meaning.
+
+A simple way would be one-hot encoding (assign each word a unique ID and represent it as a binary vector), 
+but this fails to capture relationships (like king ≠ queen but they’re related).
+Embeddings solve this by mapping similar things close together in vector space.
+
+A good embedding has these qualities:
+Semantic similarity → Similar items are close in vector space (cosine similarity or Euclidean distance).
+“cat” and “dog” will be closer than “cat” and “banana.”
+Context-awareness → Words or objects get meaning from context.
+“bank” (river) vs. “bank” (finance).
+Low-dimensional → Compressed representation compared to sparse vectors (like one-hot).
+Example: One-hot encoding of 50,000 words = 50,000 dimensions. Embeddings can represent this in just 300 dimensions.
+
+
+
+-> SoftMax
+Softmax is a mathematical function that converts a vector of real numbers (logits) into a probability distribution.
+It takes numbers that could be negative, positive, or large/small, and squashes them into values between 0 and 1, where all outputs add up to 1.
+
+z=[z1,z2,...,zn].
+Softmax(zi)=e^(zi)/∑ e^(zi)
+
+z=[2.0,1.0,0.1]
+ez=[e2.0,e1.0,e0.1]≈[7.39,2.72,1.10] --- 7.39+2.72+1.10=11.21 
+[7.39/11.21,2.72/11.21,1.10/11.21]≈[0.66,0.24,0.10]
+Class 1 → 66%........Class 2 → 24%.............Class 3 → 10%
+This means the model is most confident about Class 1.
+
+Why Exponential Function?
+Exponentiation amplifies differences: A slightly higher logit leads to a much higher probability.
+
+Key Uses of Softmax
+Multi-class classification (last layer of a neural network).
+Example: Cat, Dog, Bird → Softmax gives probability for each class.
+
+Attention mechanism (in Transformers).
+Used to decide how much attention a word should pay to another word.
+The attention scores (dot products) are passed through Softmax → so they become weights that sum to 1.
+
+Reinforcement learning policies.
+Used to turn Q-values or logits into action probabilities.
+
+
+Sigmoid: Special case of softmax with only 2 classes. (binary classification)
+σ(x) = 1 / (1+ e^(-x))
+Softmax: Generalizes to multiple classes.
+
+
+
+->Attention Mechanism
 way for the model to weight other tokens by relevance when processing a given token.
 For each token 𝑖, the model asks: “Which other tokens 𝑗 matter most to me right now?”
 The answers are numbers (weights) over all tokens; higher weight ⇒ more influence.
+
+For a sequence of N tokens, the model builds three vectors per token (per head):
+•	Query qi: what token i is looking for
+•	Key kj: what token j offers (its address/descriptor)
+•	Value vj: the actual information carried by token j
+
 
 
 
