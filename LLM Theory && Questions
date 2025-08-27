@@ -1,1 +1,23 @@
-L
+-> RNN - type of neural network designed for sequential data (time-series, text, speech, etc.)
+Unlike normal feedforward neural networks (which assume inputs are independent), RNNs remember past inputs using a hidden state, making them ideal for sequences.
+Components:
+Input layer (xₜ) → Sequence element at time step t (e.g., a word vector).
+Hidden layer (hₜ) → Stores memory of past inputs.
+Output layer (yₜ) → Prediction/output at each time step.
+Weights:
+Wₓh: Input → hidden
+Whh: Hidden → hidden (recurrent connection)
+Why: Hidden → output
+
+ht​=tanh(Wxh​xt​+Whh​ht−1​+bh​) - Hidden state update
+yt​=softmax(Why​ht​+by​) - Output prediction
+
+
+-> LLM - type of artificial intelligence model trained on huge amounts of text data to understand and generate human-like language.
+Core Components of LLMs
+
+1.Architecture
+LLMs are built on the Transformer architecture (2017).
+Transformers introduced two key ideas:
+Attention mechanism → lets the model “focus” on important words in a sentence, even if they’re far apart.
+Self-attention → each word looks at all the others to understand context.
