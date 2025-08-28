@@ -13,6 +13,23 @@ ht​=tanh(Wxh​xt​+Whh​ht−1​+bh​) - Hidden state update
 yt​=softmax(Why​ht​+by​) - Output prediction
 
 
+RNN Training Algorithm
+1. Forward Pass
+Process input sequence step by step, updating hidden states and computing outputs.
+
+2. Loss Calculation
+Compare predictions (yₜ) to true labels → compute loss (cross-entropy, MSE, etc.).
+
+3. Backward Pass (BPTT – Backpropagation Through Time)
+Backpropagation is applied across time steps.
+Errors flow backward through the unfolded sequence.
+
+Problem:
+Vanishing Gradient → Gradients shrink → can’t learn long dependencies.
+Exploding Gradient → Gradients blow up → unstable training.
+Solutions: Gradient clipping, LSTMs/GRUs.
+
+
 NOTE : initially NLP and other sequential tasks were done using RNN (LSTM/GRU) but parallel processing was tough that why transformers came into picture
 
 
@@ -100,7 +117,7 @@ Sentence → Tokens → Converted into vectors (embeddings).
 
 2. Positional Encoding
 Since Transformers don’t read sequentially, they need extra info about word order.
-Positional encoding adds a unique signal to each token embedding.
+Positional encoding adds a unique signal to each token embedding.uu
 Formula uses sine & cosine functions with different frequencies.
 
 3. Encoder-Decoder Structure
@@ -180,3 +197,62 @@ After attention, information passes through neural layers that transform data an
 
 8. Output Layer
 The model outputs probabilities for the next token.
+
+
+Temperature: A setting that controls the randomness of the output.
+Low Temperature (e.g., 0.2): More deterministic and focused. It will likely choose the most probable next word every time. Good for factual, consistent responses.
+High Temperature (e.g., 0.8): More creative and random. It's more likely to choose less probable words. Good for storytelling and generating ideas.
+
+Context Window (or Context Length): The maximum amount of text (tokens) the model can consider at one time. This includes your prompt and its response. 
+A larger context window (e.g., 128K tokens) allows it to "remember" more within a single conversation or analyze very long documents.
+
+
+
+-> 
+Top-k sampling restricts the model’s choices to the top k most
+ probable tokens at each step, introducing controlled randomness.
+
+Nucleus sampling, or top-p sampling, takes a
+ more dynamic approach by selecting tokens whose cumulative
+ probability exceeds a threshold p (e.g., 0.9). 
+
+
+
+
+
+->  LoRA and QLoRA
+these are 2 fine-tuning techniques
+LoRA (Low-Rank Adaptation)
+QLoRA (Quantized LoRA)
+
+Low-Rank Update Matrices ....When we train large models (like LLMs), most of the parameters are in weight matrices (big matrices of numbers). 
+For example, in a Transformer layer, we often see weight matrices of size like 4096 × 4096.
+Updating these full matrices during training is computationally very expensive and requires huge memory.
+The trick is: instead of updating the entire large matrix, we can approximate the update using low-rank matrices.
+
+The rank of a matrix = the number of linearly independent rows/columns.....A low-rank matrix captures the “core” structure of a matrix but with fewer dimensions.
+
+
+LoRA ....Instead of tuning every weight and parameter (which is slow and expensive), LoRA "freezes" the main model and adds tiny, 
+lightweight blocks called low-rank matrices. These matrices represent the essential changes needed for the new task and have far fewer values
+than original weights—making them much faster and cheaper to train.
+
+QLoRA...The rank of a matrix = the number of linearly independent rows/columns.....A low-rank matrix captures the “core” structure of a matrix but with 
+fewer dimensions.
+
+
+
+->
+Autoregressive model......generate text by predicting the next word (or token) in a sequence using only the words that have come before it—one at a time, 
+from left to right.
+use a causal or masked self-attention mechanism....is a technical way of saying that when the model is calculating the meaning of a word, 
+it is only allowed to look at the words that came before it. It must ignore (mask) all future word
+Produces highly coherent and context-aware text; widely used in chatbots, translators, and AI writing tools
+GPT((Generative Pre-trained Transformer) and RNNs
+
+Masked Models.....predict missing or masked words in a sentence by using context from both sides—before and after the blank.
+BERT (Bidirectional Encoder Representations from Transformers)
+ use standard self-attention....Every word can attend to every other word in the sentence, in all directions.
+Because it uses information before and after masked words, it learns richer context and is excellent for understanding, filling gaps, 
+and finding relationships in text.
+it’s best for classification, searching, and tasks like question answering, not for generating text from scratch.
