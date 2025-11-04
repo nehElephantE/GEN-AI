@@ -81,11 +81,50 @@ model = ChatHuggingFace(llm=llm)
 result = model.invoke("What is the capital of India")
 print(result.content)
 
+-> HuggingFace se model download karke use karna ho toh
+from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
+import os
+os.environ['HF_HOME'] = 'D:/huggingface_cache'
+llm = HuggingFacePipeline.from_model_id(
+    model_id='TinyLlama/TinyLlama-1.1B-Chat-v1.0',
+    task='text-generation',
+    pipeline_kwargs=dict(
+        temperature=0.5,
+        max_new_tokens=100
+    )
+)
+model = ChatHuggingFace(llm=llm
+result = model.invoke("What is the capital of India")
+print(result.content)
+
 
 NOTE : .env file mein joh variables use karna hai for API KEY woh fixed hai
 OPENAI_API_KEY, GOOGLE_API_KEY, ANTHROPIC_API_KEY, HUGGINGFACEHUB_ACCESS_TOKEN
 tabhi hi jabh hum from dotenv import load_dotenv karenge toh api keys dhang se load honge
 
+
+==> Embedding Models
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+load_dotenv()
+embedding = OpenAIEmbeddings(model='text-embedding-3-large', dimensions=32)
+result = embedding.embed_query("Delhi is the capital of India")
+print(str(result))
+
+
+
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
+embedding = OpenAIEmbeddings(model='text-embedding-3-large', dimensions=32)
+documents = [
+    "Delhi is the capital of India",
+    "Kolkata is the capital of West Bengal",
+    "Paris is the capital of France"
+]
+result = embedding.embed_documents(documents)
+print(str(result))
 
 
 -> Agents
