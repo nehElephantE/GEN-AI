@@ -126,6 +126,20 @@ documents = [
 result = embedding.embed_documents(documents)
 print(str(result))
 
+######
+NOTE
+Temperature ki value 0-2 ke beech hoti hai...0 matlab same output for same input ...2 means utna hi zyada random and diff output aayega
+
+
+######################
+PROMPTS
+There are 2 types of prompts which we can give - text based and multimodel like image or video
+
+
+
+
+
+
 
 -> Agents
 LLM with reasoning capabilities and tools ka access
