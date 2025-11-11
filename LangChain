@@ -297,6 +297,48 @@ messages.append(AIMessage(content=result.content))
 print(messages)
 
 
+-> PromptTemplate and ChatPromptTemplate mein yahin diff hai ki pehle wale mein ek hi content pass hoga..dusre wale mein multiple pass ho sakte hai
+from langchain_core.prompts import ChatPromptTemplate
+
+chat_template = ChatPromptTemplate([
+    ('system', 'You are a helpful {domain} expert'),
+    ('human', 'Explain in simple terms, what is {topic}')
+])
+
+prompt = chat_template.invoke({'domain':'cricket','topic':'Dusra'})
+
+print(prompt)
+
+
+-> MessagesPlaceholder se chat history poora le sakte hai....har baar chat history koi ek DB mein saved hoga ya txt file ya jismein bhi
+-> so jabh bhi user continue karega toh uss chat history se continue hoga
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+# chat template
+chat_template = ChatPromptTemplate([
+    ('system','You are a helpful customer support agent'),
+    MessagesPlaceholder(variable_name='chat_history'),
+    ('human','{query}')
+])
+
+chat_history = []
+# load chat history
+with open('chat_history.txt') as f:
+    chat_history.extend(f.readlines())
+
+print(chat_history)
+
+# create prompt
+prompt = chat_template.invoke({'chat_history':chat_history, 'query':'Where is my refund'})
+
+print(prompt)
+
+
+#################################
+STRUCTURED OUTPUT
+
+Structured Output refers to the practise of having LLM return responses in well defined formats like JSON or any other data format
+-> Few LLMs can by default generate structured output like gemini or open so for that we use the function with_structured_output and for thos LLMs that cannot generate structured 
+output we use output parsers
 
 -> Agents
 LLM with reasoning capabilities and tools ka access
