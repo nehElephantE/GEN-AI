@@ -345,6 +345,26 @@ LLM with reasoning capabilities and tools ka access
 
 
 
+###############################
+RAG
+
+-> Components - document loader, text splitter, vector stores, retrievers
+-> LLM - its just a huge neural network with multiple parameters powered by transformers
+-> LLM is pre trained on a humangous data and it stores it in parameters (weights and biases)....in the form of numbers....more the parameters ...more powerful LLM
+-> By giving prompt we can fetch info from these parameters but sometimes it may not answer as during pre training it might not have used that data...like personal data...
+current affairs data...sometimes the model hallucinates also
+-> So for this purpose we fine - tune the LLM ...that is we train it again on a small chunk of dataset
+
+-> one of the fine tuning method is called as "supervised fine tuning" where we provide it a labelled data...(prompt -> desired output)...so we give examples on if this is asked
+this is how the LLM should respond
+
+-> other methods are "continued pre training", "RLHF", "LoRA", "QLoRA"
+
+-> But these methods require expertise knowledge and computational power so we go ahead with "In-Context Learning"
+In-Context learning is a core capability of LLM where the model learns to solve a task purely by seeing examples in the prompt - without updating its weights
+In-Context Learning is an emergent property of the LLM - that means it is a behaviour that suddenly appears in a system when it reaches a certain scale or complexity,
+even though it was not explicitly trained or programmed.
+
 
 
 
